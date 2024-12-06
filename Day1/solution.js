@@ -1,11 +1,26 @@
-console.log(process.cwd());
+console.log("Current working directory:", process.cwd());
 
 const fs = require("fs");
+const path = require("path");
 
-// Step 1: Read the file and split into two arrays
-const input = fs.readFileSync("day1_input.txt", "utf8"); // Replace 'input.txt' with your file name
+// Dynamically build the path to the input file
+const inputPath = path.join(__dirname, "day1_input.txt");
+console.log("Looking for input file at:", inputPath);
+
+// Check if the file exists
+if (!fs.existsSync(inputPath)) {
+  console.error("Error: File does not exist or cannot be accessed.");
+  process.exit(1); // Exit the program
+}
+
+// Read the file
+const input = fs.readFileSync(inputPath, "utf8");
+console.log("Successfully read input file.");
+
+// Step 1: Split the file contents into lines
 const lines = input.trim().split("\n");
 
+// Initialize two arrays
 const list1 = [];
 const list2 = [];
 
@@ -16,7 +31,7 @@ lines.forEach(line => {
   list2.push(num2);
 });
 
-// Step 3: Sort the two arrays numerically
+// Step 3: Sort the arrays numerically
 list1.sort((a, b) => a - b);
 list2.sort((a, b) => a - b);
 
@@ -27,4 +42,5 @@ for (let i = 0; i < list1.length; i++) {
 }
 
 // Step 5: Output the result
-console.log("Total Distance:", totalDistance,"L28");
+console.log("Total Distance:", totalDistance);
+
