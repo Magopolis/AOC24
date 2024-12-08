@@ -27,7 +27,7 @@ const list1 = [];
 const list2 = [];
 
 // Step 2: Split each line into two numbers and populate arrays
-lines.forEach(line => {
+lines.forEach((line) => {
   console.log("Line being parsed (raw):", JSON.stringify(line)); // Show raw line with spaces
 
   const nums = line.trim().split(/\s+/).map(Number); // Handles tabs or multiple spaces
@@ -41,6 +41,8 @@ lines.forEach(line => {
   list1.push(num1);
   list2.push(num2);
 });
+
+// Function to calculate occurrences and products
 function multiplyOccurrences(arr1, arr2) {
   const newArray = []; // Store the results
 
@@ -70,24 +72,23 @@ function multiplyOccurrences(arr1, arr2) {
   }
 
   // Debug: Final newArray
-  console.log('Final newArray:', newArray);
+  console.log("Final newArray:", newArray);
   return newArray;
 }
 
-// Example input arrays
-const arr1 = [];
-const arr2 = [];
+// Use `list1` and `list2` as input arrays
+const result = multiplyOccurrences(list1, list2);
+console.log("Result:", result);
 
-// Call the function and log the result
-const result = multiplyOccurrences(arr1, arr2);
-console.log('Result:', result);
-
-
+// Final Total
+const finalTotal = result.reduce((sum, num) => sum + num, 0);
+console.log("Final Total:", finalTotal);
 
 // Step 3: Sort the arrays numerically
 list1.sort((a, b) => a - b);
 list2.sort((a, b) => a - b);
-console.log("Final list1 length:", list1.length);
-console.log("Final list2 length:", list2.length);
-console.log("Sample list1:", list1.slice(0, 5));
-console.log("Sample list2:", list2.slice(0, 5));
+//console.log("Final list1 length:", list1.length);
+//console.log("Final list2 length:", list2.length);
+//console.log("Sample list1:", list1.slice(0, 5));
+//console.log("Sample list2:", list2.slice(0, 5));
+
