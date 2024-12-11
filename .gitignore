@@ -1,0 +1,9 @@
+# Ignore the specific file in Day1 directory
+Day1/day1_input.txt
+
+# Ignore all files in the datasets directory
+datasets/
+
+# Ignore any standalone file named day1_input.txt in any other location
+day1_input.txt
+
