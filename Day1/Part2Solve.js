@@ -1,21 +1,28 @@
-console.log("Current working directory:", process.cwd());
-
 const fs = require("fs");
 const path = require("path");
 
+// Display current working directory
+console.info("📂 Current working directory:", process.cwd());
+
 // Dynamically build the path to the input file
 const inputPath = path.join(__dirname, "day1_input.txt");
-console.log("Looking for input file at:", inputPath);
+console.info("📄 Looking for input file at:", inputPath);
 
 // Check if the file exists
 if (!fs.existsSync(inputPath)) {
-  console.error("Error: File does not exist or cannot be accessed.");
+  console.error("❌ Error: Input file not found. Ensure 'day1_input.txt' exists in the script's directory.");
   process.exit(1); // Exit the program
 }
 
 // Read the file
-const input = fs.readFileSync(inputPath, "utf8");
-console.log("Successfully read input file.");
+let input;
+try {
+  input = fs.readFileSync(inputPath, "utf8");
+  console.info("✅ Successfully read input file.");
+} catch (err) {
+  console.error("❌ Error reading input file:", err.message);
+  process.exit(1);
+}
 
 // Step 1: Parse the input data into two arrays
 const [list1, list2] = input
@@ -33,15 +40,15 @@ const [list1, list2] = input
     [[], []] // Initialize two empty arrays
   );
 
-console.log("Parsed list1:", list1.slice(0, 5), "...");
-console.log("Parsed list2:", list2.slice(0, 5), "...");
+console.info("✅ Successfully parsed input data.");
 
 // Step 2: Build a frequency map for list2
 const frequencyMap = list2.reduce((map, num) => {
   map[num] = (map[num] || 0) + 1;
   return map;
 }, {});
-console.log("Frequency map:", frequencyMap);
+
+console.info("✅ Built frequency map for list2.");
 
 // Step 3: Multiply occurrences and calculate results
 const result = list1.reduce((acc, num) => {
@@ -52,8 +59,9 @@ const result = list1.reduce((acc, num) => {
   return acc;
 }, []);
 
-console.log("Intermediate Results:", result);
+console.info("✅ Calculated results array:", result);
 
 // Step 4: Calculate the total sum
 const finalTotal = result.reduce((sum, num) => sum + num, 0);
-console.log("Final Total:", finalTotal);
+console.info("✨ Final Total:", finalTotal);
+
